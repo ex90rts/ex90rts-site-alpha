@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-async function App() {
-  const name = await (await fetch('/api/GetName?name=ex90rts')).text();
+function App() {
+  const [name, setName] = useState(0);
+
+  useEffect(async () => {
+    const remoteName = await (await fetch("/api/GetName?name=ex90rts")).text();
+    setName(remoteName);
+  }, []);
+
   return <div>Hello {name}</div>;
 }
 
