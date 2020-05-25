@@ -13,7 +13,7 @@ export default class IdleDemo extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.supportNotification) {
+    if (!this.supportNotification || !this.supportIdleDetection) {
       return;
     }
 
@@ -26,11 +26,11 @@ export default class IdleDemo extends React.Component {
             new Notification('Hi there!');
           });
         } else {
-          startDetection();
+          this.startDetection();
         }
       });
     } else {
-      startDetection();
+      this.startDetection();
     }
   }
 
@@ -62,13 +62,17 @@ export default class IdleDemo extends React.Component {
   }
 
   render() {
+    if (this.supportNotification && this.supportIdleDetection) {
+      return (<div>
+        <div>{`Notification is supported`}</div>
+        <div>{`IdleDetection is supported`}</div>
+        <div>{`Idle change: ${this.state.userState}, ${this.state.screenState}`}</div>
+      </div>);
+    }
+
     return (<div>
-      <div>{`Notification is ${this.supportNotification ? 'supported' : 'not supported'}`}</div>
-      <div>{`IdleDetection is ${this.supportNotification ? 'supported' : 'not supported'}`}</div>
-      {(this.supportNotification && this.supportIdleDetection) ?
-        <div>{`Idle change: ${this.state.userState}, ${this.state.screenState}`}</div> :
-        null
-      }
+      <div>{`Notification is not supported`}</div>
+      <div>{`IdleDetection is not supported`}</div>
     </div>);
   }
 }
