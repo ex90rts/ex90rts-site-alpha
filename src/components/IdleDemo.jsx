@@ -34,7 +34,7 @@ export default class IdleDemo extends React.Component {
     }
   }
 
-  startDetection() {
+  async startDetection() {
     try {
       const controller = new AbortController();
       const signal = controller.signal;
