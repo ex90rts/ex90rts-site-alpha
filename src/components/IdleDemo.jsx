@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default class IdleDemo extends React {
-  supportNotification = "Notification" in window;
+export default class IdleDemo extends React.Component {
+  supportNotification = 'Notification' in window;
   supportIdleDetection = 'IdleDetector' in window;
 
   constructor(props) {
@@ -17,13 +17,13 @@ export default class IdleDemo extends React {
       return;
     }
 
-    if (Notification.permission !== 'denied' || Notification.permission === "default") {
+    if (Notification.permission !== 'denied' || Notification.permission === 'default') {
       Notification.requestPermission(function (permission) {
-        if (permission === "granted") {
+        if (permission === 'granted') {
           this.setState({
             permission: 'granted',
           }, () => {
-            new Notification("Hi there!");
+            new Notification('Hi there!');
           });
         } else {
           startDetection();
