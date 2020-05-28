@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import IdleDemo from './components/IdleDemo';
 
 function App() {
   const [name, setName] = useState(0);
@@ -14,8 +13,7 @@ function App() {
   }, []);
 
   return (<div>
-    <div>Hello {name}，this is a Idle demo</div>
-    <IdleDemo />
+    <div>Hello {name}</div>
   </div>);
 }
 
